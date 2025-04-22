@@ -23,6 +23,9 @@ Resources:
               - Effect: Allow
                 Action: 'lambda:*'
                 Resource: '*'
+              - Effect: Allow
+                Action: 'logs:*'
+                Resource: '*'
         
   TaironaBucket:
     Type: 'AWS::S3::Bucket'
