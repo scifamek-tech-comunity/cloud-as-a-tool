@@ -12,24 +12,26 @@ export const handler = async (
 		}),
 	};
 	try {
-		const {body: base64} = event;
-		if (!base64) {
-			return erroResponse;
-		}
-		// const parsedBody = JSON.parse(body);
-		// const {base64} = parsedBody;
+		const { body } = event;
+        if (!body) {
+            return erroResponse;
+        }
+        const parsedBody = JSON.parse(body);
+        const { image: base64 } = parsedBody;
+        const result = await resizeImageToSquare(base64);
+        return {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST",
+                "Content-Type": "application/json"
+              },
+            body: JSON.stringify({
+                converted: result,
+            }),
 
-		const result = await resizeImageToSquare(base64);
-
-		return {
-			statusCode: 200,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				converted: result,
-			}),
-		};
+        };
 	} catch (error) {
 		return {
 			statusCode: 500,

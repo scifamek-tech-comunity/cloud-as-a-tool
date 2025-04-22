@@ -1,24 +1,56 @@
 :host {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    width: 100%;
-    box-sizing: border-box;
 
-    gap: 8rem;
-    grid-template-columns: 1fr 1fr;
-    padding: 10rem;
+    button {
+        cursor: pointer;
+    }
 
-    >section {
-        border: 1px solid rgba(180, 180, 180, 0.34);
-        border-radius: 3rem;
-        height: 100%;
-        box-shadow: 4px 7px 14px -4px #9c9c9c31;
+    >div {
+        flex: 1 1 auto;
 
-        &:first-child {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        display: grid;
+        width: 100%;
+        box-sizing: border-box;
+
+        gap: 4rem;
+        grid-template-columns: 1fr 1fr;
+        padding: 10rem;
+
+        >section {
+            background-color: rgba(178, 178, 178, 0.532);
+            border: 1px solid rgba(180, 180, 180, 0.34);
+            border-radius: 2rem;
+            box-shadow: 4px 7px 14px -4px #9c9c9c31;
+
+            &:first-child {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            padding: 1rem;
+
+            figure {
+                margin: auto;
+                width: 80%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            button {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
         }
+    }
+
+    footer {
+        border-top: 1px solid grey;
+        padding: 1rem;
+
     }
 }

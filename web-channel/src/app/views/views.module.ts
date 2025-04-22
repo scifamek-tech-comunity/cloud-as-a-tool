@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BillingComponent } from './billing/billing.component';
 import { LoginComponent } from './login/login.component';
 import { TransformerComponent } from './transformer/transformer.component';
-import { BillingComponent } from './billing/billing.component';
 
 
 
@@ -13,7 +13,7 @@ import { BillingComponent } from './billing/billing.component';
     BillingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class ViewsModule { }

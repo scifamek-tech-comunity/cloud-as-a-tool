@@ -1,9 +1,12 @@
-<section>
-    <figure><img src="" alt=""></figure>
-  <button>
-    Subir imágen
-  </button>
-</section>
-<section>
-  <figure><img src="" alt="" /></figure>
-</section>
+<div>
+  <section>
+    <figure><img [src]="imgToTransform" alt="" /></figure>
+    <button (click)="uploadImage()">Subir imágen</button>
+  </section>
+  <section>
+    <figure><img [src]="convertedImg" alt="" /></figure>
+  </section>
+</div>
+<footer>
+  <button (click)="convert()">Convertir</button>
+</footer>
