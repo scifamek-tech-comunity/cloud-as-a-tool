@@ -12,12 +12,12 @@ export const handler = async (
 		}),
 	};
 	try {
-		const {body} = event;
-		if (!body) {
+		const {body: base64} = event;
+		if (!base64) {
 			return erroResponse;
 		}
-		const parsedBody = JSON.parse(body);
-		const {base64} = parsedBody;
+		// const parsedBody = JSON.parse(body);
+		// const {base64} = parsedBody;
 
 		const result = await resizeImageToSquare(base64);
 

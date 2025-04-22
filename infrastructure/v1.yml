@@ -26,12 +26,6 @@ Resources:
               - Effect: Allow
                 Action: 'logs:*'
                 Resource: '*'
-        
-  TaironaBucket:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
-    Properties:
-      BucketName: tairona-lambdas-bucket
   
   TaironaApi: 
     Type: "AWS::ApiGateway::RestApi"
@@ -57,7 +51,7 @@ Resources:
       Role: !GetAtt RootRole.Arn
       Handler: src/index.handler
       Code:
-        S3Bucket: !Ref TaironaBucket
+        S3Bucket: tairona-lambdas-bucket
         S3Key: usecases.zip
 
       Description: This function is encharged of converting a rectangle image to square image.

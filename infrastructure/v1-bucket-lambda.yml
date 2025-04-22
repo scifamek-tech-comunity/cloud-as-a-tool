@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation Template for Tairona Lambdas Bucket
+
+Resources:
+  TaironaBucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: tairona-lambdas-bucket
