@@ -55,7 +55,7 @@ Resources:
       FunctionName: resize-image-to-square-lambda-function
       Runtime: nodejs22.x
       Role: !GetAtt RootRole.Arn
-      Handler: index.handler
+      Handler: src/index.handler
       Code:
         S3Bucket: !Ref TaironaBucket
         S3Key: usecases.zip
