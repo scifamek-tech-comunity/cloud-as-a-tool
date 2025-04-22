@@ -28,16 +28,18 @@ jobs:
 
       - name: INSTALL NODE DEPENDENCIES
         run: |
+          cd server
           npm i
-          npm i -g firebase-tools@13.4.1 
 
       - name: BUILD 
         run: |
+          cd server
           npm run build
           cp -r node_modules dist/
 
       - name: Crear ZIP
         run: |
+          cd server
           zip -r usecases.zip src/index.js package.json node_modules
 
       - name: AWS CONFIGURATION
@@ -47,4 +49,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: S3 UPLOADING
-        run: aws s3 cp usecases.zip s3://tairona-lambdas-bucket/usecases.zip
+        run: aws s3 cp server/usecases.zip s3://tairona-lambdas-bucket/usecases.zip
