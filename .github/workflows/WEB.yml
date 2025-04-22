@@ -1,0 +1,38 @@
+name: WEB
+'on':
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  WEB-CHANNEL-DEPLOY:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DOWNLOAD REPOSITORY
+        uses: actions/checkout@v2
+      
+      - name: Configurar cache de node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: USE NODE.JS 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: INSTALL NODE DEPENDENCIES
+        run: |
+          npm i
+          npm i -g firebase-tools@13.4.1 
+
+      - name: BUILD 
+        run: |
+          npx ng build -c=production
+
+      - name: DEPLOY
+        run: |
+          firebase deploy --token "${{secrets.FIREBASE_TOKEN}}" --only hosting

@@ -1,0 +1,27 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-color: #0158ff;
+
+    form {
+        width: 50%;
+        max-width: 350px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 1rem;
+        // border: 1px solid rgba(148, 148, 148, 0.214);
+        // box-shadow: 4px 7px 14px -4px #9c9c9c31;
+
+        figure>img {
+            width: 100%;
+            border-radius: 70%;
+        }
+        label{
+            color: white;
+        }
+
+    }
+}

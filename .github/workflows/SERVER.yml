@@ -1,0 +1,50 @@
+name: WEB
+'on':
+  push:
+    branches:
+      - main
+    paths:
+      - server/**
+  workflow_dispatch:
+
+jobs:
+  SERVER-CHANNEL-DEPLOY:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DOWNLOAD REPOSITORY
+        uses: actions/checkout@v2
+      
+      - name: Configurar cache de node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: USE NODE.JS 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: INSTALL NODE DEPENDENCIES
+        run: |
+          npm i
+          npm i -g firebase-tools@13.4.1 
+
+      - name: BUILD 
+        run: |
+          npm run build
+          cp -r node_modules dist/
+
+      - name: Crear ZIP
+        run: |
+          zip -r usecases.zip src/index.js package.json node_modules
+
+      - name: AWS CONFIGURATION
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: S3 UPLOADING
+        run: aws s3 cp usecases.zip s3://tairona-lambdas-bucket/usecases.zip
