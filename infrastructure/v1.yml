@@ -59,8 +59,8 @@ Resources:
       Code:
         S3Bucket: !Ref TaironaBucket
         S3Key: usecases.zip
-        
-      Description: This function is encharged of converting a rectangle image to square.
+
+      Description: This function is encharged of converting a rectangle image to square image.
       TracingConfig:
         Mode: Active
 
