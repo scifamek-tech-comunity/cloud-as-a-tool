@@ -3,6 +3,9 @@ name: WEB
   push:
     branches:
       - main
+    paths:
+      - web-channel/**
+      - .github/workflows/WEB.yml
   workflow_dispatch:
 
 jobs:
