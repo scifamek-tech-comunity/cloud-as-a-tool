@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"@scifamek-open-source/tairona": "1.2.0",
+		"@scifamek-open-source/iraca": "4.0.2",
 		"aws-lambda": "1.0.7"
 	},
 	"devDependencies": {
